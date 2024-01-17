@@ -6,7 +6,7 @@
 #define MAX_NAZWA 1000
 
 int main(int argc, char **argv) {
-	if(argc != 5 && argc != 6) {
+	if(argc < 5 || argc > 6) {
 		fprintf(stderr, "Brak potrzebncyh danych wejściowych do uruchomienia progrmau.\n");
 		return 1;
 	}
