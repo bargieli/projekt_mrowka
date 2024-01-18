@@ -62,12 +62,12 @@ int main(int argc, char **argv) {
 	if (plik_wej != NULL) { 
 		plansza = czytaj_mape_z_pliku(m, n, plik_wej);
 		fclose(plik_wej);
-	} else if ( !isnan(proc)) {
+	} else if ( proc > 0 && proc < 101) {
 		plansza = gen_mapa(m, n, proc);
 	} else {
 		srand(time(NULL));
         proc = rand() % 101;
-                       		plansza = gen_mapa( m, n, proc );
+        plansza = gen_mapa( m, n, proc );
 	}
 
 	printf("kolumny: %d	wiersze: %d\n", n, m);
@@ -81,6 +81,7 @@ int main(int argc, char **argv) {
 	
 	FILE *plik_wyj = NULL;
 
+	rys_plansza(plik_wyj, m, n, plansza, ant);
 	for(int i = 0; i < iter; i++) {
 		if (prefix != NULL ) {		
 			sprintf( nazwa_pliku, "%s_%diteracji", prefix, i);

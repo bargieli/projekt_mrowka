@@ -40,7 +40,7 @@ void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
     setlocale(LC_ALL, "C.UTF-8");
 
 	//printf("Plik %p\n", (void *)plik);
-//	plik = stdout;
+	plik = stdout;
     fprintf(plik, "┌");
     for (int kol = 0; kol < n; kol++) {
         fprintf(plik, "─");
