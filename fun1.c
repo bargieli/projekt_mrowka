@@ -28,14 +28,19 @@ mrowka gen_mrowka(int m, int n, char kier_wej) {
 	ant.m = m/2;
 	ant.n = n/2;
 	ant.kier = kier_wej;
+	printf("%d, %d, %c\n", ant.m, ant.n, ant.kier);
 	
 	return ant;
+}
+
+void wyjscie( FILE *plik, int m, int n, int i) {
+	 fprintf(plik, "iter = %d, m = %d, n = %d\n", i, m, n);
 }
 void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
     setlocale(LC_ALL, "C.UTF-8");
 
-	printf("Plik %p\n", (void *)plik);
-
+	//printf("Plik %p\n", (void *)plik);
+//	plik = stdout;
     fprintf(plik, "┌");
     for (int kol = 0; kol < n; kol++) {
         fprintf(plik, "─");
@@ -71,7 +76,12 @@ void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
         fprintf(plik, "─");
     }
     fprintf(plik, "┘\n");
+
+	if (plik != stdout )
+			fclose(plik);	
 }
+
+
 /*void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant) {
 	setlocale(LC_ALL, "C.UTF-8");
 	

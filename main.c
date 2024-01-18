@@ -89,10 +89,10 @@ int main(int argc, char **argv) {
 		} else {
 			plik_wyj = stdout;
 		}
+		wyjscie(plik_wyj, m, n, i);
 		ant = ruch(plansza, ant, iter, m, n);
 		rys_plansza(plik_wyj, m, n, plansza, ant);
-		if (plik_wyj != stdout )
-			fclose(plik_wyj);		
+			
 	}
 
 	for(int i = 0; i < m; i++) {	
