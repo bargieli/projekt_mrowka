@@ -90,10 +90,18 @@ int main(int argc, char **argv) {
 		} else {
 			plik_wyj = stdout;
 		}
-		wyjscie(plik_wyj, m, n, i);
+//		wyjscie(plik_wyj, m, n, i);
 		ant = ruch(plansza, ant, iter, m, n);
-		rys_plansza(plik_wyj, m, n, plansza, ant);
-			
+//		rys_plansza(plik_wyj, m, n, plansza, ant);
+		if (prefix != NULL ) {		
+			sprintf( nazwa_pliku, "%s_%diteracji", prefix, i);
+			plik_wyj = fopen(nazwa_pliku, "w");
+			printf("Nazwa pliku:%s\n", nazwa_pliku);
+			rys_plansza(plik_wyj, m, n, plansza, ant);
+		} else {
+			plik_wyj = stdout;
+			rys_plansza_stdout( m, n, plansza, ant);
+		}	
 	}
 
 	for(int i = 0; i < m; i++) {	
