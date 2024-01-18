@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 	
 	if(argc == 7) {
 		printf("Wejście do pętli z warunkiem (argc == 7)\n");
-		if( !(czy_proc(argv[5]) && !(czy_proc(argv[6]) ) ) ) {
+		if( !(czy_proc(argv[5]) && czy_proc(argv[6]) ) )  {
 			printf("Wejście do pętli z warunkiem, że obydwa nie są proc\n");
 			FILE *plik_wej1, *plik_wej2;		
 			plik_wej1 = fopen(argv[5], "r");
@@ -71,10 +71,30 @@ int main(int argc, char **argv) {
 		
 		} else {
 			FILE *plik_wej;
-			if( czy_proc(argv[6]) ) {
-				proc = atoi(argv[6]);
+			if( czy_proc(argv[5]) ) {
+				proc = atoi(argv[5]);
                         	// genruje mape na podstawie podanego proc
                         	plansza = gen_mapa(m, n, proc);
+				plik_wej = fopen(argv[6], "r");
+                        	if( plik_wej != NULL ) {
+                               		plansza = czytaj_mape_z_pliku(m, n, plik_wej);
+                                	fclose(plik_wej);
+                                	plik = argv[6];
+                        	} else {
+                                	prefix = argv[6];
+                       		}
+			} else if( czy_proc(argv[6]) ) {
+                                proc = atoi(argv[6]);
+                                // genruje mape na podstawie podanego proc
+                                plansza = gen_mapa(m, n, proc);
+				 plik_wej = fopen(argv[5], "r");
+                       		 if( plik_wej != NULL ) {
+                                	plansza = czytaj_mape_z_pliku(m, n, plik_wej);
+                                	fclose(plik_wej);
+                                	plik = argv[5];
+                        	} else {
+                                	prefix = argv[5];
+                        	}
 			} else {
 				srand(time(NULL));
                       		proc = rand() % 101;
@@ -110,6 +130,10 @@ int main(int argc, char **argv) {
 		} else { 
 			fprintf(stderr, "Błąd podanych parametrów.\n");
 		}
+	} else {
+		srand(time(NULL));
+                proc = rand() % 101;
+                plansza = gen_mapa(m, n, proc);
 	}	
 			 
 	if (prefix != NULL ) {		
@@ -133,7 +157,7 @@ int main(int argc, char **argv) {
 		kier - kierunek poczatkowy 
 		plik_wyj - nazwa pliku wyjściowego
 		
-		w zależności od podaanej danej wejściowej:
+			w zależności od podaanej danej wejściowej:
 		proc - procent zapełnienia planszy
 		plik_wej - plik wejściowy	
 		prefix			*/
