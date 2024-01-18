@@ -28,7 +28,7 @@ mrowka gen_mrowka(int m, int n, char kier_wej) {
 	ant.m = m/2;
 	ant.n = n/2;
 	ant.kier = kier_wej;
-	printf("%d, %d, %c\n", ant.m, ant.n, ant.kier);
+//	printf("%d, %d, %c\n", ant.m, ant.n, ant.kier);
 	
 	return ant;
 }
@@ -39,8 +39,6 @@ void wyjscie( FILE *plik, int m, int n, int i) {
 void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
     setlocale(LC_ALL, "C.UTF-8");
 
-	//printf("Plik %p\n", (void *)plik);
-	plik = stdout;
     fprintf(plik, "┌");
     for (int kol = 0; kol < n; kol++) {
         fprintf(plik, "─");
@@ -51,15 +49,27 @@ void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
         fprintf(plik, "│");
         for (int kol = 0; kol < n; kol++) {
             if (wier == ant.m && kol == ant.n) {
-                if (ant.kier == 'G') {
-                    fprintf(plik, "▲");
-                } else if (ant.kier == 'D') {
-                    fprintf(plik, "▼");
-                } else if (ant.kier == 'L') {
-                    fprintf(plik, "◀");
-                } else if (ant.kier == 'P') {
-                    fprintf(plik, "▶");
-                }
+				if (plansza[wier][kol] == 'B') {			
+					if (ant.kier == 'G') {
+						fprintf(plik, "▲");
+					} else if (ant.kier == 'D') {
+						fprintf(plik, "▼");
+					} else if (ant.kier == 'L') {
+						fprintf(plik, "◀");
+					} else if (ant.kier == 'P') {
+						fprintf(plik, "▶");
+					}
+					} else {
+						if (ant.kier == 'G'){	
+							fprintf(plik, "△");
+						} else if (ant.kier == 'D') {
+							fprintf(plik, "▽");
+						} else if (ant.kier == 'L') {
+							fprintf(plik, "◁");
+						} else if (ant.kier == 'P') {
+							fprintf(plik, "▷");
+						}
+					}
             } else {
                 if (plansza[wier][kol] == ' ') {
                     fprintf(plik, " ");
@@ -77,21 +87,12 @@ void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
     }
     fprintf(plik, "┘\n");
 
-	if (plik != stdout )
-			fclose(plik);	
+	fclose(plik);	
 }
 
 
 void rys_plansza_stdout( int m, int n, char **plansza, mrowka ant) {
 	setlocale(LC_ALL, "C.UTF-8");
-/*
-	if( plik_wyj == NULL ) {
-		plik = stdout;
-	} else {s
-		plik = fopen(plik_wyj, "w");
-	}
-*/
-	//printf("Plik %p\n", (void *)plik);
 
 	printf( "┌");
 	for(int kol = 0; kol < n; kol++) {
@@ -102,15 +103,28 @@ void rys_plansza_stdout( int m, int n, char **plansza, mrowka ant) {
 	for(int wier = 0; wier < m; wier++) {
 		printf( "│");
 		for( int kol = 0; kol < n; kol++) {
-	  		if (wier == ant.m && kol == ant.n) {
-				if (ant.kier == 'G'){	
-					printf( "▲");
-				} else if (ant.kier == 'D') {
-					printf( "▼");
-				} else if (ant.kier == 'L') {
-					printf( "◀");
-				} else if (ant.kier == 'P') {
-					printf( "▶");
+	  		if (wier == ant.m && kol == ant.n) { 
+//				wprintf(L"!  %lc  !",plansza[wier][kol]);
+				if (plansza[wier][kol] == 'B') {
+					if (ant.kier == 'G'){	
+						printf( "▲");
+					} else if (ant.kier == 'D') {
+						printf( "▼");
+					} else if (ant.kier == 'L') {
+						printf( "◀");
+					} else if (ant.kier == 'P') {
+						printf( "▶");
+					}
+				} else {
+					if (ant.kier == 'G'){	
+						printf( "△");
+					} else if (ant.kier == 'D') {
+						printf( "▽");
+					} else if (ant.kier == 'L') {
+						printf( "◁");
+					} else if (ant.kier == 'P') {
+						printf( "▷");
+					}
 				}
 			} else {
 				if (plansza[wier][kol] == ' ') {

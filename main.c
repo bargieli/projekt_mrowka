@@ -14,7 +14,8 @@ int main(int argc, char **argv) {
 
 	int m, n, iter;
 	double proc;
-	char *prefix, *plik;
+	char *prefix;
+	char  *plik;
 	char kier;
 
 	while( ( parametry = getopt(argc, argv, "m:n:k:i:p:r:f:" ) ) != -1 ) {
@@ -59,18 +60,21 @@ int main(int argc, char **argv) {
 	mrowka ant = gen_mrowka(m, n, kier);
 
 	FILE *plik_wej = fopen(plik, "r");
+
 	if (plik_wej != NULL) { 
 		plansza = czytaj_mape_z_pliku(m, n, plik_wej);
 		fclose(plik_wej);
-	} else if ( proc >= 0 && proc < 101) {
+	} else if ( proc > 0 && proc < 101) {
 		plansza = gen_mapa(m, n, proc);
 	} else {
 		srand(time(NULL));
-        proc = rand() % 101;
+        proc = (double)rand() / RAND_MAX * 100.0;
         plansza = gen_mapa( m, n, proc );
 	}
 
-	printf("kolumny: %d	wiersze: %d\n", n, m);
+	printf("Parametry startowe:\n");
+	printf("wiersze: %d\n", m);
+	printf("kolumny: %d	\n", n);
 	printf("kierunek: %c\n", kier);
 	printf("iteracje: %d\n", iter);
 	printf("plik: %s\n", plik);
@@ -81,27 +85,18 @@ int main(int argc, char **argv) {
 	
 	FILE *plik_wyj = NULL;
 
-	rys_plansza(plik_wyj, m, n, plansza, ant);
-	for(int i = 0; i < iter; i++) {
+
+	for(int i = 0; i < iter; i++) {		
+	
 		if (prefix != NULL ) {		
 			sprintf( nazwa_pliku, "%s_%diteracji", prefix, i);
 			plik_wyj = fopen(nazwa_pliku, "w");
-			printf("Nazwa pliku:%s\n", nazwa_pliku);
-		} else {
-			plik_wyj = stdout;
-		}
-//		wyjscie(plik_wyj, m, n, i);
-		ant = ruch(plansza, ant, iter, m, n);
-//		rys_plansza(plik_wyj, m, n, plansza, ant);
-		if (prefix != NULL ) {		
-			sprintf( nazwa_pliku, "%s_%diteracji", prefix, i);
-			plik_wyj = fopen(nazwa_pliku, "w");
-			printf("Nazwa pliku:%s\n", nazwa_pliku);
+//			printf("Nazwa pliku:%s\n", nazwa_pliku);
 			rys_plansza(plik_wyj, m, n, plansza, ant);
 		} else {
-			plik_wyj = stdout;
 			rys_plansza_stdout( m, n, plansza, ant);
 		}	
+		ant = ruch(plansza, ant, iter, m, n);
 	}
 
 	for(int i = 0; i < m; i++) {	
