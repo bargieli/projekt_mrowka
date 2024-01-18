@@ -12,13 +12,8 @@ typedef struct {
 
 mrowka gen_mrowka(int m, int n, char kier_wej);
 
-void wyjscie( FILE *plik, int m, int n, int i);
-
 void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant);
 
 void rys_plansza_stdout( int m, int n, char **plansza, mrowka ant);
 
-int czy_litery(const char *str);
-
-int czy_proc( char *parametr );
 #endif

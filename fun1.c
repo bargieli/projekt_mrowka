@@ -33,9 +33,6 @@ mrowka gen_mrowka(int m, int n, char kier_wej) {
 	return ant;
 }
 
-void wyjscie( FILE *plik, int m, int n, int i) {
-	 fprintf(plik, "iter = %d, m = %d, n = %d\n", i, m, n);
-}
 void rys_plansza(FILE *plik, int m, int n, char **plansza, mrowka ant) {
     setlocale(LC_ALL, "C.UTF-8");
 
@@ -142,22 +139,5 @@ void rys_plansza_stdout( int m, int n, char **plansza, mrowka ant) {
                 printf( "─");
         }
 	printf("┘\n");
-}
-
-int czy_litery(const char *str) {
-	int i = 0;
-	if( ( str[i] > 'Z' && str[i] > 'A' ) || ( str[i] < 'z' && str[i] > 'a') ) {
-		return 0;
-	}
-	return 1;
-}
-
-int czy_proc( char *parametr ) {
-	for( int i = 0; i < 2; i++ ) {
-		if(!( parametr[i] <= '9' && parametr[i] >= '0')	) {
-			return 0;
-		}
-	}
-	return 1;
 }
 
