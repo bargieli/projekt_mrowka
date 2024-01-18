@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 	if (plik_wej != NULL) { 
 		plansza = czytaj_mape_z_pliku(m, n, plik_wej);
 		fclose(plik_wej);
-	} else if ( proc > 0 && proc < 101) {
+	} else if ( proc >= 0 && proc < 101) {
 		plansza = gen_mapa(m, n, proc);
 	} else {
 		srand(time(NULL));
