@@ -4,6 +4,8 @@
 #include <wchar.h>
 #include <locale.h>
 
+#include "fun1.h"
+
 #include "funkcje2.h"
 
 char skret_w_prawo(char akt){

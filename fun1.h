@@ -12,7 +12,7 @@ typedef struct {
 
 mrowka gen_mrowka(int m, int n, char kier_wej);
 
-void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant);
+void rys_plansza( char *plik, int m, int n, char **plansza, mrowka ant);
 
 int czy_litery(const char *str);
 

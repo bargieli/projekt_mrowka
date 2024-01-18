@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "fun1.h"
 
-
-typedef struct {
+/* typedef struct {
     int m; //wiersz
     int n; //kol
     char kier; //GDPL
-} mrowka;
+} mrowka; */
 
 //obrot, zmiana koloru komorki, krok do przodu
 mrowka ruch (char** mapa, mrowka mr, int iteracje, int m, int n);

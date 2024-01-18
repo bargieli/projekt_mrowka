@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
 //jeżeli plik_wej1 istnieje lub obydwa istnieją do plik_wej1 jest plikiem do wczytania, a nazwę plik_wej2 traktuje jako prefix
 
 			if(plik_wej1 != NULL ) {
-				// wczyt_plansza( ! DO UZUPEŁNIENIA ! );
+				plansza = czytaj_mape_z_pliku(m, n, plik_wej1);
 				fclose(plik_wej1);
 				prefix = argv[6];
 				plik = argv[5];
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 				
 			} else if(plik_wej2 != NULL ) {
 
-				// wczyt_plansza( ! DO UZUPEŁNIENIA ! );
+				plansza = czytaj_mape_z_pliku(m, n, plik_wej2);
                        		fclose(plik_wej2);
 				prefix = argv[5];
 				plik = argv[6];
@@ -67,24 +67,24 @@ int main(int argc, char **argv) {
 
 		        srand(time(NULL));
               		proc = rand() % 101;
-              		// gen_mapa( ! DO UZUPEŁNIENIA ! );
+              		plansza = gen_mapa( m, n, proc);
 		
 		} else {
 			FILE *plik_wej;
 			if( czy_proc(argv[6]) ) {
 				proc = atoi(argv[6]);
                         	// genruje mape na podstawie podanego proc
-                        	//gen_mapa( ! DO UZUPEŁNIENIA ! );
+                        	plansza = gen_mapa(m, n, proc);
 			} else {
 				srand(time(NULL));
                       		proc = rand() % 101;
-                       		// gen_mapa( ! DO UZUPEŁNIENIA ! );
+                       		plansza = gen_mapa( m, n, proc );
 			}
 			
 			plik_wej = fopen(argv[5], "r");
 			if( plik_wej != NULL ) {
-				// wczyt_plansza( ! DO UZUPEŁNIENIA ! );
-                                fclose(plik_wej);
+				plansza = czytaj_mape_z_pliku(m, n, plik_wej);
+				fclose(plik_wej);
 				plik = argv[5];
 			} else {
 				prefix = argv[5];
@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
 			 FILE *plik_wej1;    
                  	plik_wej1 = fopen(argv[5], "r");
 			if( plik_wej1 != NULL ) {
-				 // wczyt_plansza( ! DO UZUPEŁNIENIA ! );
+				plansza = czytaj_mape_z_pliku(m, n, plik_wej1);
                                 fclose(plik_wej1);
 				plik = argv[5];
 			} else {
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
                         }
 			srand(time(NULL));
                         proc = rand() % 101;
-                        // gen_mapa( ! DO UZUPEŁNIENIA ! )
+                        plansza = gen_mapa(m, n, proc);
 
 		} else if ( czy_proc(argv[5] ) ) {
 			proc = atoi(argv[5]);
@@ -137,7 +137,11 @@ int main(int argc, char **argv) {
 		proc - procent zapełnienia planszy
 		plik_wej - plik wejściowy	
 		prefix			*/
-	
+
+	for(int i = 0; i < iter; i++) {
+		ant = ruch(plansza, ant, iter, m, n);
+		rys_plansza(plik, m, n, plansza, ant);
+	}
 
 	for(int i = 0; i < m; i++) {	
 		free(plansza[i]);

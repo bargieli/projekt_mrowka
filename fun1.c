@@ -31,11 +31,15 @@ mrowka gen_mrowka(int m, int n, char kier_wej) {
 	
 	return ant;
 }
-void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant) {
+void rys_plansza( char *plik_wyj, int m, int n, char **plansza, mrowka ant) {
 	setlocale(LC_ALL, "C.UTF-8");
+
+	FILE *plik;
 	
-	if( plik == NULL ) {
+	if( plik_wyj == NULL ) {
 		plik = stdout;
+	} else {
+		plik = fopen(plik_wyj, "w");
 	}
 
 	fprintf(plik, "┌");
