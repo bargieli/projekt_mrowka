@@ -14,4 +14,7 @@ mrowka gen_mrowka(int m, int n, char kier_wej);
 
 void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant);
 
+int czy_litery(const char *str);
+
+int czy_proc( char *parametr );
 #endif

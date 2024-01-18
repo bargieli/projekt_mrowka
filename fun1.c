@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include <locale.h>
+#include<string.h>
 
 #include "fun1.h"
 
@@ -32,6 +33,10 @@ mrowka gen_mrowka(int m, int n, char kier_wej) {
 }
 void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant) {
 	setlocale(LC_ALL, "C.UTF-8");
+	
+	if( plik == NULL ) {
+		plik = stdout;
+	}
 
 	fprintf(plik, "┌");
 	for(int kol = 0; kol < n; kol++) {
@@ -69,3 +74,21 @@ void rys_plansza( FILE *plik, int m, int n, char **plansza, mrowka ant) {
         }
 	fprintf(plik, "┘\n");
 }
+
+int czy_litery(const char *str) {
+	int i = 0;
+	if( ( str[i] > 'Z' && str[i] > 'A' ) || ( str[i] < 'z' && str[i] > 'a') ) {
+		return 0;
+	}
+	return 1;
+}
+
+int czy_proc( char *parametr ) {
+	for( int i = 0; i < 2; i++ ) {
+		if(!( parametr[i] <= '9' && parametr[i] >= '0')	) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
