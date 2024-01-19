@@ -9,8 +9,8 @@ Przy wywołaniu program możliwe jest wprowadzenie 7 różnych parametrów, gdzi
     -i liczba iteracji
 3 z nich są opcjonalne:
     -f nazwa pliku zawierającego mapę
-    -r prefix do nazwy plików wynikowych
-    -p procent zapełnienia losowo wygenerowanej mapy, należy podać liczbę z zakresu <0, 100> (może byc zmiennoprzecinkowa)
+    -p prefix do nazwy plików wynikowych
+    -r procent zapełnienia losowo wygenerowanej mapy, należy podać liczbę z zakresu <0, 100> (może byc zmiennoprzecinkowa)
     
 UWAGA! Jęzeli zosatną podane za razem nazwa pliku i procent zapełnienia planszy, to mapa pobrana z pliku będzie prioretytezowana, a procent w tym przypadku będzie bezużyteczny
     

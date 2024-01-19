@@ -134,7 +134,7 @@ void zwolnij_mape (int m, int n, char** map){
     free(map);
 }
 
-char** czytaj_mape_z_pliku(int m, int n, FILE* plik){
+char** czytaj_mape_z_pliku(int m, int n, FILE* plik, mrowka* ant){
     setlocale(LC_ALL, "en_US.UTF-8");
 
     char** mapa = (char**)calloc(m, sizeof(char*));
@@ -157,6 +157,67 @@ char** czytaj_mape_z_pliku(int m, int n, FILE* plik){
             if(znak == L' '){
                 l++;
             }
+            //△
+            if(znak == L'\u25B3'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'G';
+                mapa[i][j] = ' ';
+            }
+            if(znak == L'\u25B2'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'G';
+                mapa[i][j] = 'B';
+            }
+            //▷
+            if(znak == L'\u25B7'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'P';
+                mapa[i][j] = ' ';
+            }
+            if(znak == L'\u25B6'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'P';
+                mapa[i][j] = 'B';
+            }
+            //▽
+            if(znak == L'\u25BD'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'D';
+                mapa[i][j] = ' ';
+            }
+            if(znak == L'\u25BC'){
+                l++;
+                ant->m =  i;
+                ant->n = j;
+                ant->kier = 'D';
+                mapa[i][j] = 'B';
+            }
+            //◁
+            if(znak == L'\u25C1'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'L';
+                mapa[i][j] = ' ';
+            }
+            if(znak == L'\u25C0'){
+                l++;
+                ant->m = i;
+                ant->n = j;
+                ant->kier = 'L';
+                mapa[i][j] = 'B';
+            }
+            
             
             if(l==0){
                 j--;

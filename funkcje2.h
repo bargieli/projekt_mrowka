@@ -24,7 +24,7 @@ void drukuj_mape (int m, int n, char** map);
 void zwolnij_mape (int m, int n, char** map);
 
 //wczytuje mape z podanego pliku
-char** czytaj_mape_z_pliku(int m, int n, FILE* plik);
+char** czytaj_mape_z_pliku(int m, int n, FILE* plik, mrowka* ant);
 
 
 #endif
