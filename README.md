@@ -1,5 +1,7 @@
 # projekt_mrowka
 
+Celem projektu było zwizualizowanie algorytmu Mrówki Langtona. Zasady działania algorytmu znajdują się w pliku mrowka_langtona_IB_OW.pdf w repozytorium.
+
 Program uruchamia sie prz pomocą komendy: ./ant <tu umieścić flagi oraz odpowiadające im parametry>
 Przy wywołaniu program możliwe jest wprowadzenie 7 różnych parametrów, gdzie:
 4 z nich sa obowiązkowe do uruchomienia programu:
